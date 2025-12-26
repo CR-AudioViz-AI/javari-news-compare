@@ -1,26 +1,40 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { cn } from '@/lib/utils';
+import Script from 'next/script';
+import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'CRAV News Compare | Conservative vs Liberal News Comparison',
-  description: 'Compare news coverage across conservative and liberal sources with international reporting, analytics, and AI-powered insights.',
-  keywords: ['news comparison', 'conservative news', 'liberal news', 'media bias', 'news analysis'],
-};
+  description: 'Part of the CR AudioViz AI creative ecosystem',
+  formatDetection: { telephone: false },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={cn(inter.className, 'min-h-screen bg-background antialiased')}>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="format-detection" content="telephone=no" />
+      </head>
+      <body className={`${inter.className} min-h-screen min-h-[100dvh] antialiased`}>
+        <div className="min-h-screen min-h-[100dvh] bg-gradient-to-br from-gray-50 to-gray-100">
+          {children}
+        </div>
+        <Script src="https://javariai.com/embed.js" strategy="lazyOnload" />
       </body>
     </html>
-  );
+  )
 }
