@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { NextResponse } from "next/server"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -40,4 +41,51 @@ export function sleep(ms: number): Promise<void> {
 export function truncate(str: string, length: number): string {
   if (str.length <= length) return str
   return str.slice(0, length) + "..."
+}
+
+// API Response helpers
+export function successResponse<T>(data: T, status = 200) {
+  return NextResponse.json({ success: true, data }, { status })
+}
+
+export function errorResponse(
+  message: string, 
+  code?: string, 
+  details?: unknown, 
+  status = 400
+) {
+  return NextResponse.json(
+    { 
+      success: false, 
+      error: { message, code, details } 
+    }, 
+    { status }
+  )
+}
+
+export function unauthorizedResponse(message = "Unauthorized") {
+  return NextResponse.json(
+    { success: false, error: { message, code: "UNAUTHORIZED" } },
+    { status: 401 }
+  )
+}
+
+export function notFoundResponse(message = "Not found") {
+  return NextResponse.json(
+    { success: false, error: { message, code: "NOT_FOUND" } },
+    { status: 404 }
+  )
+}
+
+export function getBaseUrl(): string {
+  if (typeof window !== "undefined") {
+    return window.location.origin
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`
+  }
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return process.env.NEXT_PUBLIC_APP_URL
+  }
+  return "http://localhost:3000"
 }
