@@ -6,6 +6,9 @@ import { createServerSupabaseClient, getCurrentUser, getUserOrg, checkAndConsume
 import { successResponse, unauthorizedResponse, quotaExceededResponse, errorResponse } from '@/lib/utils';
 import type { CompareResponse, NewsGroupWithArticles } from '@/types';
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getCurrentUser();

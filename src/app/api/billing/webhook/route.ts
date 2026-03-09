@@ -7,6 +7,9 @@ import { verifyWebhookSignature } from '@/lib/stripe';
 import { createServiceRoleClient } from '@/lib/supabase';
 import { successResponse, errorResponse } from '@/lib/utils';
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.text();

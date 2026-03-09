@@ -6,6 +6,9 @@ import { z } from 'zod';
 import { createServiceRoleClient, getCurrentUser } from '@/lib/supabase';
 import { successResponse, errorResponse } from '@/lib/utils';
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const trackEventSchema = z.object({
   session_id: z.string().min(1),
   event_type: z.string().min(1),

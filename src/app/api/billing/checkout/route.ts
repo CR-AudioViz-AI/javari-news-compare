@@ -8,6 +8,9 @@ import { getCurrentUser, getUserOrg } from '@/lib/supabase';
 import { successResponse, unauthorizedResponse, errorResponse, getBaseUrl } from '@/lib/utils';
 import type { CheckoutResponse } from '@/types';
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const checkoutSchema = z.object({
   plan_id: z.string().min(1),
   coupon_code: z.string().optional(),

@@ -6,6 +6,9 @@ import { createServerSupabaseClient, getCurrentUser, getUserOrg } from '@/lib/su
 import { successResponse, unauthorizedResponse, errorResponse } from '@/lib/utils';
 import type { AnalyticsSummaryResponse } from '@/types';
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getCurrentUser();

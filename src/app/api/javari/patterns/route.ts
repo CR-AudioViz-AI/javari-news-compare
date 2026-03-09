@@ -7,6 +7,9 @@ import { createServiceRoleClient } from '@/lib/supabase';
 import { successResponse, errorResponse } from '@/lib/utils';
 import type { JavariPatternInsight } from '@/types';
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
