@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
@@ -22,10 +21,9 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./*"
       ]
     },
     "noImplicitAny": false
@@ -37,10 +35,6 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "e2e",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    ".next"
+    "node_modules"
   ]
 }
